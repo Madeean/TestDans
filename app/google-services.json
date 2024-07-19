@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "690604976469",
+    "project_id": "testdansmultipro-36d88",
+    "storage_bucket": "testdansmultipro-36d88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:690604976469:android:12c4ec0ef56620a4c8a7dc",
+        "android_client_info": {
+          "package_name": "com.madeean.testdansmultipro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbBTKh8ptgXjONDDibMVFutZmNMr9rHAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
