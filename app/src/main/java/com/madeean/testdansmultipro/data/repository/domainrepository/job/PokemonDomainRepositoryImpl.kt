@@ -1,8 +1,8 @@
-package com.madeean.testdansmultipro.data.repository.domainrepository
+package com.madeean.testdansmultipro.data.repository.domainrepository.job
 //
 //import com.madeean.testdansmultipro.data.network.ApiService
 //import com.madeean.testemos.data.repository.datastore.PokemonDataStore
-//import com.madeean.testdansmultipro.domain.JobDomainRepository
+//import com.madeean.testdansmultipro.domain.job.JobDomainRepository
 //import com.madeean.testemos.domain.model.DetailPokemonModelDomain
 //import com.madeean.testemos.domain.model.PokemonModelPresentation
 //import com.madeean.testdansmultipro.presentation.util.RequestState

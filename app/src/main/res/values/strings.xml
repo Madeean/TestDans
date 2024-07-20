@@ -1,3 +1,5 @@
 <resources>
   <string name="app_name">TestDansMultiPro</string>
+  <string name="web_client_id">690604976469-eom9vsrriknk2tcmntgd7gb41tfma3qb.apps.googleusercontent.com</string>
+  <string name="facebook_app_id">1057753182614312</string>
 </resources>

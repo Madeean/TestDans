@@ -1,9 +1,10 @@
-package com.madeean.testdansmultipro.domain
+package com.madeean.testdansmultipro.domain.job
 
-import kotlinx.coroutines.flow.Flow
 
-interface JobDomainUseCase {
+interface JobDomainRepository {
+
 //  fun getDetailPokemon(name: String): Flow<RequestState<DetailPokemonModelDomain>>
 //
 //  fun getListPokemon(): Flow<RequestState<List<PokemonModelPresentation>>>
+
 }

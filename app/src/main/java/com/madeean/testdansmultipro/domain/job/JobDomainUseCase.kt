@@ -1,10 +1,7 @@
-package com.madeean.testdansmultipro.domain
+package com.madeean.testdansmultipro.domain.job
 
-
-interface JobDomainRepository {
-
+interface JobDomainUseCase {
 //  fun getDetailPokemon(name: String): Flow<RequestState<DetailPokemonModelDomain>>
 //
 //  fun getListPokemon(): Flow<RequestState<List<PokemonModelPresentation>>>
-
 }

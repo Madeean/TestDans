@@ -49,11 +49,18 @@ android {
 }
 
 dependencies {
+  implementation("com.facebook.android:facebook-login:[5,6)")
+
   implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+  implementation("com.google.firebase:firebase-auth")
+
+  // Also add the dependency for the Google Play services library and specify its version
+  implementation("com.google.android.gms:play-services-auth:21.2.0")
 
   implementation(libs.compottie)
   implementation(libs.androidx.navigation.compose)
   implementation(libs.androidx.lifecycle.viewmodel.compose)
+  implementation( "androidx.lifecycle:lifecycle-runtime-compose:2.5.1")
   implementation(libs.coil.compose)
 
   implementation(libs.ktor.client.logging)

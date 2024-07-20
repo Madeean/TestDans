@@ -1,4 +1,4 @@
-package com.madeean.testdansmultipro.data.repository.datastore
+package com.madeean.testdansmultipro.data.repository.datastore.job
 //
 //import com.madeean.testdansmultipro.data.network.ApiService
 //import com.madeean.testemos.data.network.ApiService

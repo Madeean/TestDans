@@ -1,4 +1,4 @@
-package com.madeean.testdansmultipro.domain
+package com.madeean.testdansmultipro.domain.job
 
 
 class JobDomainUseCaseImpl(
