@@ -49,7 +49,11 @@ android {
 }
 
 dependencies {
-  implementation("com.facebook.android:facebook-login:[5,6)")
+
+  implementation(libs.paging.compose.common)
+  implementation(libs.paging.common)
+
+  implementation("com.facebook.android:facebook-login:15.2.0")
 
   implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
   implementation("com.google.firebase:firebase-auth")

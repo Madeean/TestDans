@@ -22,8 +22,9 @@ import com.madeean.testdansmultipro.presentation.login.viewmodel.LoginViewModel
 @Composable
 fun LoginScreen(
   viewModel: LoginViewModel,
-  navigateToHomeScreen: () -> Unit,
-  onGoogleSignInClick: () -> Unit
+  navigateToHomeScreen: (String) -> Unit,
+  onGoogleSignInClick: () -> Unit,
+  onFacebookSignInClick: () -> Unit
 ) {
   Scaffold {
     Column(
@@ -35,7 +36,7 @@ fun LoginScreen(
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       Button(
-        onClick = {},
+        onClick = { onFacebookSignInClick() },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(
@@ -48,7 +49,7 @@ fun LoginScreen(
       Text(text = "OR")
       Spacer(modifier = Modifier.height(12.dp))
       Button(
-        onClick = {onGoogleSignInClick()},
+        onClick = { onGoogleSignInClick() },
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
         colors = ButtonDefaults.buttonColors(

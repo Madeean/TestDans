@@ -7,5 +7,5 @@ class ApiService {
   val BASE_URL_LIST_JOB = "$END_POINT$LIST_JOB"
 
   private val DETAIL_JOB = "/"
-  val BASE_URL_DETAIL_JOB = "$END_POINT$LIST_JOB"
+  val BASE_URL_DETAIL_JOB = "$END_POINT$DETAIL_JOB"
 }

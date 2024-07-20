@@ -8,5 +8,7 @@ data class LoginModelDomain(
 data class LoginDetailModelDomain(
   val userId: String,
   val username: String,
-  val profilePictureUrl: String?
+  val profilePictureUrl: String?,
+  val method: String,
+  val methodProfile: String = ""
 )

@@ -1,6 +1,7 @@
 package com.madeean.testdansmultipro.presentation.login.auth
 
 import android.app.Activity
+import androidx.navigation.NavController
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -11,10 +12,12 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.madeean.testdansmultipro.domain.login.model.LoginDetailModelDomain
 import com.madeean.testdansmultipro.domain.login.model.LoginModelDomain
+import kotlin.math.log
 
 class FacebookAuthUiClient(
   private val activity: Activity,
-  private val callbackManager: CallbackManager
+  private val callbackManager: CallbackManager,
+  private val navController: NavController
 ) {
   private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
@@ -46,13 +49,15 @@ class FacebookAuthUiClient(
             val userDetails = LoginDetailModelDomain(
               userId = user.uid,
               username = user.displayName ?: "",
-              profilePictureUrl = user.photoUrl?.toString()
+              profilePictureUrl = user.photoUrl?.toString(),
+              method = "facebook"
             )
             val loginModel = LoginModelDomain(
               data = userDetails,
               errorMessage = null
             )
             println("Facebook login success")
+            navController.navigate("Home/${loginModel.toQueryStringFacebook()}")
           } else {
             println("Facebook login failed: user is null")
           }
@@ -60,5 +65,21 @@ class FacebookAuthUiClient(
           println("Facebook login failed: ${task.exception?.message}")
         }
       }
+  }
+
+  private fun extractId(url: String): String {
+    val parts = url.split('/')
+    return parts[3]
+  }
+
+  fun LoginModelDomain.toQueryStringFacebook(): String {
+    val profilePictureUrl = extractId(data?.profilePictureUrl ?: "")
+
+    return "userId=${data?.userId.orEmpty()}&username=${data?.username.orEmpty()}&profilePictureUrl=$profilePictureUrl&method=${data?.method}"
+  }
+
+  fun signOut() {
+    firebaseAuth.signOut()
+    LoginManager.getInstance().logOut()
   }
 }

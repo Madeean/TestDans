@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -76,6 +77,29 @@ fun ErrorView(
         .padding(16.dp)
         .wrapContentWidth(Alignment.CenterHorizontally)
     ) {
+      Text(text = "Try again")
+    }
+  }
+}
+
+@Composable
+fun ErrorItem(
+  message: String,
+  modifier: Modifier = Modifier,
+  onClickRetry: () -> Unit
+) {
+  Row(
+    modifier = modifier.padding(16.dp),
+    horizontalArrangement = Arrangement.SpaceBetween,
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    Text(
+      text = message,
+      maxLines = 1,
+      modifier = Modifier.weight(1f),
+      color = Color.Red
+    )
+    OutlinedButton(onClick = onClickRetry) {
       Text(text = "Try again")
     }
   }

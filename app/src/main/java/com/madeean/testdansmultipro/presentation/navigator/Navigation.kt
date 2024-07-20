@@ -6,7 +6,11 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import com.madeean.testdansmultipro.domain.login.model.LoginModelDomain
+import com.madeean.testdansmultipro.presentation.job.viewmodel.JobViewModel
+import com.madeean.testdansmultipro.presentation.login.auth.toQueryString
+import com.madeean.testdansmultipro.presentation.login.auth.toQueryStringUnknown
 import com.madeean.testdansmultipro.presentation.login.viewmodel.LoginViewModel
+import com.madeean.testdansmultipro.presentation.navigator.directions.detailComposable
 import com.madeean.testdansmultipro.presentation.navigator.directions.homeComposable
 import com.madeean.testdansmultipro.presentation.navigator.directions.loginComposable
 import com.madeean.testdansmultipro.presentation.util.ConstantNavigator
@@ -15,9 +19,12 @@ import com.madeean.testdansmultipro.presentation.util.ConstantNavigator
 fun SetupNavigation(
   navController: NavHostController,
   loginViewModel: LoginViewModel,
+  jobViewModel: JobViewModel,
   onGoogleSignInClick: () -> Unit,
   isUserLoggedIn: Boolean,
-  userData: LoginModelDomain?
+  userData: LoginModelDomain?,
+  onFacebookSignInClick: () -> Unit,
+  logout: () -> Unit
 ) {
   val screen = remember(navController) {
     Screens(navController = navController)
@@ -25,7 +32,7 @@ fun SetupNavigation(
 
   LaunchedEffect(isUserLoggedIn) {
     if (isUserLoggedIn && userData != null) {
-      navController.navigate(ConstantNavigator.HOME_SCREEN)
+      navController.navigate("Home/${userData.toQueryStringUnknown()}")
     }
   }
 
@@ -37,7 +44,13 @@ fun SetupNavigation(
       ConstantNavigator.LOGIN_SCREEN
     },
   ) {
-    homeComposable()
-    loginComposable(loginViewModel = loginViewModel, navigateToHomeScreen = screen.home, onGoogleSignInClick = onGoogleSignInClick)
+    detailComposable(jobViewModel, navController)
+    homeComposable(jobViewModel, logout, navigateToDetailScreen = screen.detail)
+    loginComposable(
+      loginViewModel = loginViewModel,
+      navigateToHomeScreen = screen.home,
+      onGoogleSignInClick = onGoogleSignInClick,
+      onFacebookSignInClick = onFacebookSignInClick
+    )
   }
 }

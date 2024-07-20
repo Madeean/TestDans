@@ -44,7 +44,8 @@ class GoogleAuthUiClient(
                 val userDetails = LoginDetailModelDomain(
                   userId = user.uid,
                   username = user.displayName ?: "",
-                  profilePictureUrl = user.photoUrl?.toString()
+                  profilePictureUrl = user.photoUrl?.toString(),
+                  method = "google"
                 )
                 val loginModel = LoginModelDomain(
                   data = userDetails,
@@ -64,9 +65,44 @@ class GoogleAuthUiClient(
     } catch (e: ApiException) {
       onFailure()
     }
+
+  }
+  fun signOut() {
+    firebaseAuth.signOut()
+    googleSignInClient.signOut().addOnCompleteListener(activity) {
+      // Handle post-sign-out tasks
+    }
   }
 }
 
 fun LoginModelDomain.toQueryString(): String {
-  return "userId=${data?.userId.orEmpty()}&username=${data?.username.orEmpty()}&profilePictureUrl=${data?.profilePictureUrl.orEmpty()}"
+  val profilePictureUrl = data?.profilePictureUrl?.let {
+    it.substringAfter("https://lh3.googleusercontent.com/a/")
+  }.orEmpty()
+
+  return "userId=${data?.userId.orEmpty()}&username=${data?.username.orEmpty()}&profilePictureUrl=$profilePictureUrl&method=${data?.method}"
+}
+private fun extractIdUnknown(url: String): String {
+  val parts = url.split('/')
+  return parts[2]
+}
+private fun extractIdFacebook(url: String): String {
+  val parts = url.split('/')
+  return parts[3]
+}
+fun LoginModelDomain.toQueryStringUnknown(): String {
+  var profilePictureUrl = ""
+  var methodUnknown = ""
+  val methodProfile = extractIdUnknown(data?.profilePictureUrl ?: "");
+  if(methodProfile == "graph.facebook.com"){
+    methodUnknown = "facebook"
+    profilePictureUrl = extractIdFacebook(data?.profilePictureUrl ?: "")
+  }else{
+    methodUnknown = "google"
+    profilePictureUrl = data?.profilePictureUrl?.let {
+      it.substringAfter("https://lh3.googleusercontent.com/a/")
+    }.orEmpty()
+  }
+
+  return "userId=${data?.userId.orEmpty()}&username=${data?.username.orEmpty()}&profilePictureUrl=$profilePictureUrl&method=$methodUnknown"
 }

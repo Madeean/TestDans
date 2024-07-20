@@ -2,4 +2,5 @@
   <string name="app_name">TestDansMultiPro</string>
   <string name="web_client_id">690604976469-eom9vsrriknk2tcmntgd7gb41tfma3qb.apps.googleusercontent.com</string>
   <string name="facebook_app_id">1057753182614312</string>
+  <string name="facebook_client_token">0495f8558b6fc5202c9da2628cc96a42</string>
 </resources>

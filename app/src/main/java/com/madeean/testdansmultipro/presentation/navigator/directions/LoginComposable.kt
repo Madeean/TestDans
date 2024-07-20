@@ -8,12 +8,13 @@ import com.madeean.testdansmultipro.presentation.util.ConstantNavigator
 
 fun NavGraphBuilder.loginComposable(
   loginViewModel: LoginViewModel,
-  navigateToHomeScreen: () -> Unit,
-  onGoogleSignInClick: () -> Unit
+  navigateToHomeScreen: (String) -> Unit,
+  onGoogleSignInClick: () -> Unit,
+  onFacebookSignInClick: () -> Unit
 ) {
   composable(
     route = ConstantNavigator.LOGIN_SCREEN,
   ) {
-    LoginScreen(loginViewModel, navigateToHomeScreen, onGoogleSignInClick)
+    LoginScreen(loginViewModel, navigateToHomeScreen, onGoogleSignInClick, onFacebookSignInClick)
   }
 }
